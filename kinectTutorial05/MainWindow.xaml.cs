@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,10 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 using System.ComponentModel;
 
 using Microsoft.Kinect;
+using System.Diagnostics;
 
 namespace kinectTutorial05
 {
@@ -107,7 +109,15 @@ namespace kinectTutorial05
         /// Height of display (depth space)
         private int displayHeightBody;
 
-       
+        private int meanCount = 0;
+
+        private List<double> elbowL_wristL_values = new List<double>();
+        private List<double> elbowR_wristR_values = new List<double>();
+        private List<double> shoulderL_elbowL_values = new List<double>();
+        private List<double> shoulderR_elbowR_values = new List<double>();
+
+        Stopwatch value_record_timer = new Stopwatch();
+
 
         public MainWindow()
         {
@@ -438,6 +448,8 @@ namespace kinectTutorial05
 
             CheckPosition(joints, joint0, jointType0, joint1, jointType1);
             
+
+
             // If we can't find either of these joints, we cannot draw them! Exit
             if (joint0.TrackingState == TrackingState.NotTracked ||
                 joint1.TrackingState == TrackingState.NotTracked)
@@ -466,35 +478,35 @@ namespace kinectTutorial05
             Joint wristL = joints[JointType.WristLeft];
             Joint wristR = joints[JointType.WristRight];
 
-            float shoulderL_elbowL_delta = (shoulderL.Position.Y - elbowL.Position.Y) / (shoulderL.Position.X - elbowL.Position.X);
-            float shoulderR_elbowR_delta = (shoulderR.Position.Y - elbowR.Position.Y) / (shoulderR.Position.X - elbowR.Position.X);
-            float elbowL_wristL_delta = (elbowL.Position.Y - wristL.Position.Y) / (elbowL.Position.X - wristL.Position.X);
-            float elbowR_wristR_delta = (elbowR.Position.Y - wristR.Position.Y) / (elbowR.Position.X - wristR.Position.X);
-
             bool shoulderL_ElbowL = false, shoulderR_ElbowR = false, elbowL_WristL = false, elbowR_WristR = false;
 
-            /*
-               ShoulderRight ElbowRight delta = -0,8401243
-               ElbowRight WristRight delta = -0,7857277
-               ShoulderLeft ElbowLeft delta = 1,380111
-               ElbowLeft WristLeft delta = -0,4764336 */
+            double elbowL_wristL_Angle = GetBoneAngle(elbowL.Position.X, elbowL.Position.Y, wristL.Position.X, wristL.Position.Y);
+            double shoulderL_elbowL_Angle = GetBoneAngle(shoulderL.Position.X, shoulderL.Position.Y, elbowL.Position.X, elbowL.Position.Y);
+            double elbowR_wristR_Angle = GetBoneAngle(elbowR.Position.X, elbowR.Position.Y, wristR.Position.X, wristR.Position.Y);
+            double shoulderR_elbowR_Angle = GetBoneAngle(shoulderR.Position.X, shoulderR.Position.Y, elbowR.Position.X, elbowR.Position.Y);
 
-            if (shoulderR_elbowR_delta < -0.8 + 1 && shoulderR_elbowR_delta > -0.8 - 1)
-            {
-                shoulderR_ElbowR = true;
-            }   
-            if (elbowR_wristR_delta < -0.8 + 1 && elbowR_wristR_delta > -0.8 - 1)
-            {
-                elbowR_WristR = true;
-            }   
-            if (shoulderL_elbowL_delta < 1.35 + 1 && shoulderL_elbowL_delta > 1.35 - 1)
-            {
-                shoulderL_ElbowL = true;
-            }
-            if (elbowL_wristL_delta < -0.5 + 1 && elbowL_wristL_delta > -0.5 - 1)
+            // Console.WriteLine(elbowL_wristL_Angle);
+
+            double error = 0.5;
+
+            if (elbowL_wristL_Angle < -0.229 + error && elbowL_wristL_Angle > -0.229 - error)
             {
                 elbowL_WristL = true;
             }
+            if (elbowR_wristR_Angle < 1.1872 + error && elbowR_wristR_Angle > 1.1872 - error)
+            {
+                elbowR_WristR = true;
+            } 
+            if (shoulderL_elbowL_Angle < 0.4268 + error && shoulderL_elbowL_Angle > 0.4268 - error)
+            {
+                shoulderL_ElbowL = true;
+            }
+            if (shoulderR_elbowR_Angle < -0.8090 + error && shoulderR_elbowR_Angle > -0.8090 - error)
+            {
+                shoulderR_ElbowR = true;
+            }
+
+
 
             if (shoulderR_ElbowR && elbowR_WristR && shoulderL_ElbowL && elbowL_WristL)
             {
@@ -506,6 +518,66 @@ namespace kinectTutorial05
 
         }
 
+
+        private void RecordValue(IReadOnlyDictionary<JointType, Joint> joints, Joint joint0, JointType jointType0, Joint joint1, JointType jointType1)
+        {
+            
+
+            Joint shoulderL = joints[JointType.ShoulderLeft];
+            Joint shoulderR = joints[JointType.ShoulderRight];
+            Joint elbowL = joints[JointType.ElbowLeft];
+            Joint elbowR = joints[JointType.ElbowRight];
+            Joint wristL = joints[JointType.WristLeft];
+            Joint wristR = joints[JointType.WristRight];
+
+            double shoulderL_elbowL_angle = GetBoneAngle(shoulderL.Position.X, elbowL.Position.X, shoulderL.Position.Y, elbowL.Position.Y);
+            double shoulderR_elbowR_angle = GetBoneAngle(shoulderR.Position.X, elbowR.Position.X, shoulderR.Position.Y, elbowR.Position.Y);
+            double elbowL_wristL_angle = GetBoneAngle(elbowL.Position.X, wristL.Position.X, elbowL.Position.Y, wristL.Position.Y);
+            double elbowR_wristR_angle = GetBoneAngle(elbowR.Position.X, wristR.Position.X, elbowR.Position.Y, wristR.Position.Y);
+
+            shoulderL_elbowL_values.Add(shoulderL_elbowL_angle);
+            shoulderR_elbowR_values.Add(shoulderR_elbowR_angle);
+            elbowL_wristL_values.Add(elbowL_wristL_angle);
+            elbowR_wristR_values.Add(elbowR_wristR_angle);
+
+            if (shoulderL_elbowL_values.Count > 0)
+            {
+                Console.Write("shoulderL_elbowL : {0}\n" +
+                "shoulderR_elbowR : {1}\n" +
+                "elbowL_wristL : {2}\n" +
+                "elbowR_wristR : {3}\n",shoulderL_elbowL_values.Average().ToString(), shoulderR_elbowR_values.Average().ToString(),
+                elbowL_wristL_values.Average().ToString(), elbowR_wristR_values.Average().ToString());
+
+                // Thread.Sleep(1000);
+            }
+            
+        }
+
+        private double GetArrayMean(double[] arr)
+        {
+            double sum = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sum += arr[i];
+            }
+
+            return sum / arr.Length;
+        }
+
+        private double GetBoneAngle(float joint1_X, float joint1_Y, float joint2_X, float joint2_Y)
+        {
+            double angle;
+
+            float deltaX = joint1_X - joint2_X;
+            float deltaY = joint1_Y - joint2_Y;
+
+            float delta = deltaY / deltaX;
+
+            angle = Math.Atan(delta);
+
+            return angle;
+        }
         /// Draws a hand symbol if the hand is tracked: red circle = closed, green circle = opened; blue circle = lasso ergo pointing
         private void DrawHand(HandState handState, Point handPosition, DrawingContext drawingContext)
         {
