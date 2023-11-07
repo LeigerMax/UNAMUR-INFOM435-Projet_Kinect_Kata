@@ -115,6 +115,10 @@ namespace kinectTutorial05
         private List<double> elbowR_wristR_values = new List<double>();
         private List<double> shoulderL_elbowL_values = new List<double>();
         private List<double> shoulderR_elbowR_values = new List<double>();
+        private List<double> hipL_kneeL_values = new List<double>();
+        private List<double> hipR_kneeR_values = new List<double>();
+        private List<double> kneeL_ankleL_values = new List<double>();
+        private List<double> kneeR_ankleR_values = new List<double>(); 
 
         Stopwatch value_record_timer = new Stopwatch();
 
@@ -446,7 +450,7 @@ namespace kinectTutorial05
             Joint joint0 = joints[jointType0];
             Joint joint1 = joints[jointType1];
 
-            CheckPosition(joints, joint0, jointType0, joint1, jointType1);
+            RecordValue(joints, joint0, jointType0, joint1, jointType1);
             
 
 
@@ -466,7 +470,6 @@ namespace kinectTutorial05
 
             drawingContext.DrawLine(drawPen, jointPoints[jointType0], jointPoints[jointType1]);
 
-            int slope = 0;
         }
 
         private void CheckPosition(IReadOnlyDictionary<JointType, Joint> joints, Joint joint0, JointType jointType0, Joint joint1, JointType jointType1)
@@ -487,21 +490,21 @@ namespace kinectTutorial05
 
             // Console.WriteLine(elbowL_wristL_Angle);
 
-            double error = 0.5;
+            double error = 50;
 
-            if (elbowL_wristL_Angle < -0.229 + error && elbowL_wristL_Angle > -0.229 - error)
+            if (elbowL_wristL_Angle < 272.72 + error && elbowL_wristL_Angle > 272.72 - error)
             {
                 elbowL_WristL = true;
             }
-            if (elbowR_wristR_Angle < 1.1872 + error && elbowR_wristR_Angle > 1.1872 - error)
+            if (elbowR_wristR_Angle < 82.65 + error && elbowR_wristR_Angle > 82.65 - error)
             {
                 elbowR_WristR = true;
             } 
-            if (shoulderL_elbowL_Angle < 0.4268 + error && shoulderL_elbowL_Angle > 0.4268 - error)
+            if (shoulderL_elbowL_Angle < 75.35 + error && shoulderL_elbowL_Angle > 75.35 - error)
             {
                 shoulderL_ElbowL = true;
             }
-            if (shoulderR_elbowR_Angle < -0.8090 + error && shoulderR_elbowR_Angle > -0.8090 - error)
+            if (shoulderR_elbowR_Angle < 280.67 + error && shoulderR_elbowR_Angle > 280.67 - error)
             {
                 shoulderR_ElbowR = true;
             }
@@ -518,7 +521,12 @@ namespace kinectTutorial05
 
         }
 
+        private double NormalizeAngle(double angle)
+        {
+            if (angle >= 0) return angle;
 
+            return angle + (2 * Math.PI);
+        }
         private void RecordValue(IReadOnlyDictionary<JointType, Joint> joints, Joint joint0, JointType jointType0, Joint joint1, JointType jointType1)
         {
             
@@ -529,24 +537,44 @@ namespace kinectTutorial05
             Joint elbowR = joints[JointType.ElbowRight];
             Joint wristL = joints[JointType.WristLeft];
             Joint wristR = joints[JointType.WristRight];
+            Joint hipL = joints[JointType.HipLeft];
+            Joint hipR = joints[JointType.HipRight];
+            Joint kneeL = joints[JointType.KneeLeft];
+            Joint kneeR = joints[JointType.KneeRight];
+            Joint ankleL = joints[JointType.AnkleLeft];
+            Joint ankleR = joints[JointType.AnkleRight];
 
             double shoulderL_elbowL_angle = GetBoneAngle(shoulderL.Position.X, elbowL.Position.X, shoulderL.Position.Y, elbowL.Position.Y);
             double shoulderR_elbowR_angle = GetBoneAngle(shoulderR.Position.X, elbowR.Position.X, shoulderR.Position.Y, elbowR.Position.Y);
             double elbowL_wristL_angle = GetBoneAngle(elbowL.Position.X, wristL.Position.X, elbowL.Position.Y, wristL.Position.Y);
             double elbowR_wristR_angle = GetBoneAngle(elbowR.Position.X, wristR.Position.X, elbowR.Position.Y, wristR.Position.Y);
+            double hipL_kneeL_angle = GetBoneAngle(hipL.Position.X, kneeL.Position.X, hipL.Position.Y, kneeL.Position.Y);
+            double hipR_kneeR_angle = GetBoneAngle(hipR.Position.X, kneeR.Position.X, hipR.Position.Y, kneeR.Position.Y);
+            double kneeL_ankleL_angle = GetBoneAngle(kneeL.Position.X, ankleL.Position.X, kneeL.Position.Y, ankleL.Position.Y);
+            double kneeR_ankleR_angle = GetBoneAngle(kneeR.Position.X, ankleR.Position.X, kneeR.Position.Y, ankleR.Position.Y);
+
 
             shoulderL_elbowL_values.Add(shoulderL_elbowL_angle);
             shoulderR_elbowR_values.Add(shoulderR_elbowR_angle);
             elbowL_wristL_values.Add(elbowL_wristL_angle);
             elbowR_wristR_values.Add(elbowR_wristR_angle);
+            hipL_kneeL_values.Add(hipL_kneeL_angle);
+            hipR_kneeR_values.Add(hipR_kneeR_angle);
+            kneeL_ankleL_values.Add(kneeL_ankleL_angle);
+            kneeR_ankleR_values.Add(kneeR_ankleR_angle);
 
             if (shoulderL_elbowL_values.Count > 0)
             {
                 Console.Write("shoulderL_elbowL : {0}\n" +
                 "shoulderR_elbowR : {1}\n" +
                 "elbowL_wristL : {2}\n" +
-                "elbowR_wristR : {3}\n",shoulderL_elbowL_values.Average().ToString(), shoulderR_elbowR_values.Average().ToString(),
-                elbowL_wristL_values.Average().ToString(), elbowR_wristR_values.Average().ToString());
+                "elbowR_wristR : {3}\n" +
+                "hipL_kneeL : {4}\n" +
+                "hipR_kneeR : {5}\n" +
+                "kneeL_ankleL : {6}\n" +
+                "kneeR_ankleR : {7}\n",shoulderL_elbowL_values.Average().ToString(), shoulderR_elbowR_values.Average().ToString(),
+                elbowL_wristL_values.Average().ToString(), elbowR_wristR_values.Average().ToString(), hipL_kneeL_values.Average().ToString()
+                ,hipR_kneeR_values.Average().ToString(), kneeL_ankleL_values.Average().ToString(), kneeR_ankleR_values.Average().ToString());
 
                 // Thread.Sleep(1000);
             }
@@ -565,7 +593,7 @@ namespace kinectTutorial05
             return sum / arr.Length;
         }
 
-        private double GetBoneAngle(float joint1_X, float joint1_Y, float joint2_X, float joint2_Y)
+        private double GetBoneAngle(float joint1_X, float joint2_X, float joint1_Y, float joint2_Y)
         {
             double angle;
 
@@ -576,7 +604,7 @@ namespace kinectTutorial05
 
             angle = Math.Atan(delta);
 
-            return angle;
+            return NormalizeAngle(angle) * (180 / Math.PI);
         }
         /// Draws a hand symbol if the hand is tracked: red circle = closed, green circle = opened; blue circle = lasso ergo pointing
         private void DrawHand(HandState handState, Point handPosition, DrawingContext drawingContext)
