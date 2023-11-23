@@ -25,6 +25,8 @@ namespace kinectKata
     {
         Body
     }
+
+
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         // Setup interface option selection
@@ -107,6 +109,33 @@ namespace kinectKata
         
         private List<List<double>> current_kata;
 
+        public void initializeCurrentKata()
+        {
+            this.current_kata = new List<List<double>>();
+
+            var filename = "XMLFile1.xml";
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var kataFilepath = Path.Combine(currentDirectory, filename);
+
+            XElement Xkata = XElement.Load(kataFilepath);
+            IEnumerable<XElement> Xcurrent_kata = Xkata.Elements("pos");
+
+            int i = 0;
+            foreach (XElement k in Xcurrent_kata)
+            {
+                current_kata.Add(new List<double>());
+                IEnumerable<XElement> angleList = k.Elements("angle");
+
+                foreach (XElement a in angleList)
+                {
+                    var val = XmlConvert.ToDouble(a.Value.Trim());
+                    //Console.WriteLine(val);
+                    current_kata[i].Add(val);
+                }
+                i++;
+            }
+        }
+
         public MainWindow()
         {
             // Initialize the sensor
@@ -147,6 +176,9 @@ namespace kinectKata
             this.kinectSensor.Open();
 
             InitializeComponent();
+
+            // Initialize current_kata with the kata.xml file
+            initializeCurrentKata();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -209,6 +241,7 @@ namespace kinectKata
                     break;
             }
         }*/
+
 
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
@@ -299,6 +332,8 @@ namespace kinectKata
 
             }
         }
+
+
 
         // ***************************************************************************//
         // ************************* BODY DATA PROCESSING **************************//
