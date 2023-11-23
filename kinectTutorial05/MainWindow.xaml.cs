@@ -384,21 +384,21 @@ namespace kinectKata
 
             // Console.WriteLine(elbowL_wristL_Angle);
 
-            double error = 50;
+            double error = 30;
 
-            if (elbowL_wristL_Angle < 272.72 + error && elbowL_wristL_Angle > 272.72 - error)
+            if (elbowL_wristL_Angle < 40.27 + error && elbowL_wristL_Angle > 40.27 - error)
             {
                 elbowL_WristL = true;
             }
-            if (elbowR_wristR_Angle < 82.65 + error && elbowR_wristR_Angle > 82.65 - error)
+            if (elbowR_wristR_Angle < 38.8 + error && elbowR_wristR_Angle > 38.8 - error)
             {
                 elbowR_WristR = true;
             } 
-            if (shoulderL_elbowL_Angle < 75.35 + error && shoulderL_elbowL_Angle > 75.35 - error)
+            if (shoulderL_elbowL_Angle < 56.4 + error && shoulderL_elbowL_Angle > 56.4 - error)
             {
                 shoulderL_ElbowL = true;
             }
-            if (shoulderR_elbowR_Angle < 280.67 + error && shoulderR_elbowR_Angle > 280.67 - error)
+            if (shoulderR_elbowR_Angle < 66 + error && shoulderR_elbowR_Angle > 66 - error)
             {
                 shoulderR_ElbowR = true;
             }
