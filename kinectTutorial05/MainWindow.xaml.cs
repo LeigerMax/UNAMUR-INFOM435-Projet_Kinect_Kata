@@ -433,8 +433,8 @@ namespace kinectKata
         
              shoulderL_ElbowL = ComparePositions(shoulderL_elbowL_Angle, current_kata[current_position][0]);
              shoulderR_ElbowR = ComparePositions(shoulderR_elbowR_Angle, current_kata[current_position][1]);
-             elbowL_WristL = ComparePositions(elbowL_WristL_Angle, current_kata[current_position][2]);
-             elbowR_WristR = ComparePositions(elbowR_WristR_Angle, current_kata[current_position][3]);
+             elbowL_WristL = ComparePositions(elbowL_wristL_Angle, current_kata[current_position][2]);
+             elbowR_WristR = ComparePositions(elbowR_wristR_Angle, current_kata[current_position][3]);
         
              return shoulderL_ElbowL && shoulderR_ElbowR && elbowL_WristL && elbowR_WristR; 
          }
@@ -529,7 +529,7 @@ namespace kinectKata
 
             angle = Math.Atan(delta);
 
-            return NormalizeAngle(angle) * (180 / Math.PI);
+            return Math.Abs(angle * (180 / Math.PI));
         }
         /// Draws a hand symbol if the hand is tracked: red circle = closed, green circle = opened; blue circle = lasso ergo pointing
         private void DrawHand(HandState handState, Point handPosition, DrawingContext drawingContext)
