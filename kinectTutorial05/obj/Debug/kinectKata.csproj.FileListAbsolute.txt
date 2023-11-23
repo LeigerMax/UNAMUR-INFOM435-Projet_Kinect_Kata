@@ -33,3 +33,4 @@ F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectK
 F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectKata.csproj.CopyComplete
 F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectTutorial05.exe
 F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectTutorial05.pdb
+F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\bin\Debug\Microsoft.Kinect.dll

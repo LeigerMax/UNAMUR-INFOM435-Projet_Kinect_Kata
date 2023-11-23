@@ -18,17 +18,19 @@ using System.ComponentModel;
 
 using Microsoft.Kinect;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace kinectKata
 {
+    /*
     public enum DisplayFrameType
     {
         Body
-    }
+    }*/
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         // Setup interface option selection
-        private const DisplayFrameType DEFAULT_DISPLAYFRAMETYPE = DisplayFrameType.Body;
+       // private const DisplayFrameType DEFAULT_DISPLAYFRAMETYPE = DisplayFrameType.Body;
 
         /// Kinect Sensor
         private KinectSensor kinectSensor = null;
@@ -36,9 +38,9 @@ namespace kinectKata
         // Object to write the image to show on the interface for DEPTH, COLOR and INFRARED sources
         private WriteableBitmap bitmap = null;
         private FrameDescription currentFrameDescription;
-        private DisplayFrameType currentDisplayFrameType;
+        //private DisplayFrameType currentDisplayFrameType;
         // Reader to receive the information from the camera
-        private MultiSourceFrameReader multiSourceFrameReader = null;
+        //private MultiSourceFrameReader multiSourceFrameReader = null;
 
 
 
@@ -102,6 +104,11 @@ namespace kinectKata
 
         Stopwatch value_record_timer = new Stopwatch();
 
+        private int currentPositionNumber = 0;
+
+
+
+
 
         public MainWindow()
         {
@@ -109,10 +116,9 @@ namespace kinectKata
             this.kinectSensor = KinectSensor.GetDefault();
 
             // Open the reader for the  frames
-            this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader
-                (FrameSourceTypes.Body);
+            // this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader (FrameSourceTypes.Body);
             // Wire handler for frame arrival - This is a later defined method 
-            this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
+            //this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
 
             // Set up display frame types:
             //SetupCurrentDisplay(DEFAULT_DISPLAYFRAMETYPE);
@@ -143,6 +149,10 @@ namespace kinectKata
             this.kinectSensor.Open();
 
             InitializeComponent();
+            NextPosition();
+            UpdateStatus(true, true, true, true, true);
+
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -204,7 +214,7 @@ namespace kinectKata
                 default:
                     break;
             }
-        }*/
+        }
 
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
@@ -221,7 +231,7 @@ namespace kinectKata
                 default:
                     break;
             }
-        }
+        }*/
 
 
 
@@ -609,15 +619,50 @@ namespace kinectKata
 
         }
 
-       
+
 
         // ***************************************************************************//
         // *************************    BUTTONS ACTIONS    **************************//
 
 
-       // private void Button_Body(object sender, RoutedEventArgs e)
-       // {
-       //     SetupCurrentDisplay(DisplayFrameType.Body);
-       // }
+        // private void Button_Body(object sender, RoutedEventArgs e)
+        // {
+        //     SetupCurrentDisplay(DisplayFrameType.Body);
+        // }
+
+        // ***************************************************************************//
+        // *************************        INTERFACE       **************************//
+        private void HandleSuccessfulPosition()
+        {
+            SuccessMessage.Visibility = Visibility.Visible;
+        }
+
+        private void NextPosition()
+        {
+            SuccessMessage.Visibility = Visibility.Collapsed;
+            PositionName.Text = $"Position : {currentPositionNumber} - TestName ";
+
+            Uri newImageSource = new Uri($"/position{currentPositionNumber}.png", UriKind.Relative);
+            image_example.Source = new BitmapImage(newImageSource);
+        }
+
+        private void UpdateStatus(bool isTorsoOK, bool isRightArmOK, bool isLeftArmOK, bool isRightLegOK, bool isLeftLegOK)
+        {
+            TorsoStatus.Text = "Torse: " + (isTorsoOK ? "OK" : "KO");
+            RightArmStatus.Text = "Right Arm: " + (isRightArmOK ? "OK" : "KO");
+            LeftArmStatus.Text = "Left Arm: " + (isLeftArmOK ? "OK" : "KO");
+            RightLegStatus.Text = "Right Leg: " + (isRightLegOK ? "OK" : "KO");
+            LeftLegStatus.Text = "Left Leg: " + (isLeftLegOK ? "OK" : "KO");
+
+            if (isTorsoOK && isRightArmOK && isLeftArmOK && isRightLegOK && isLeftLegOK)
+            {
+                HandleSuccessfulPosition();
+            }
+        }
+
+
+
     }
+
+
 }
