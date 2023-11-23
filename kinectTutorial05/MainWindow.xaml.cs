@@ -102,6 +102,10 @@ namespace kinectKata
 
         Stopwatch value_record_timer = new Stopwatch();
 
+        private int current_kata_id = 1;
+        private int current_position = 1;
+        
+        private List<List<double>> current_kata;
 
         public MainWindow()
         {
@@ -410,6 +414,37 @@ namespace kinectKata
             }
 
         }
+
+         private bool CheckCurrentKataPosition(IReadOnlyDictionary<JointType, Joint> joints, Joint joint0, JointType jointType0, Joint joint1, JointType jointType1)
+         {
+             Joint shoulderL = joints[JointType.ShoulderLeft];
+             Joint shoulderR = joints[JointType.ShoulderRight];
+             Joint elbowL = joints[JointType.ElbowLeft];
+             Joint elbowR = joints[JointType.ElbowRight];
+             Joint wristL = joints[JointType.WristLeft];
+             Joint wristR = joints[JointType.WristRight];
+        
+             bool shoulderL_ElbowL = false, shoulderR_ElbowR = false, elbowL_WristL = false, elbowR_WristR = false;
+        
+             double elbowL_wristL_Angle = GetBoneAngle(elbowL.Position.X, elbowL.Position.Y, wristL.Position.X, wristL.Position.Y);
+             double shoulderL_elbowL_Angle = GetBoneAngle(shoulderL.Position.X, shoulderL.Position.Y, elbowL.Position.X, elbowL.Position.Y);
+             double elbowR_wristR_Angle = GetBoneAngle(elbowR.Position.X, elbowR.Position.Y, wristR.Position.X, wristR.Position.Y);
+             double shoulderR_elbowR_Angle = GetBoneAngle(shoulderR.Position.X, shoulderR.Position.Y, elbowR.Position.X, elbowR.Position.Y);
+        
+             shoulderL_ElbowL = ComparePositions(shoulderL_elbowL_Angle, current_kata[current_position][0]);
+             shoulderR_ElbowR = ComparePositions(shoulderR_elbowR_Angle, current_kata[current_position][1]);
+             elbowL_WristL = ComparePositions(elbowL_WristL_Angle, current_kata[current_position][2]);
+             elbowR_WristR = ComparePositions(elbowR_WristR_Angle, current_kata[current_position][3]);
+        
+             return shoulderL_ElbowL && shoulderR_ElbowR && elbowL_WristL && elbowR_WristR; 
+         }
+
+         private bool ComparePositions(double pos, double expected)
+         {
+             double error = 45;
+        
+             return pos < expected + error && pos > expected - error;
+         }
 
         private double NormalizeAngle(double angle)
         {
