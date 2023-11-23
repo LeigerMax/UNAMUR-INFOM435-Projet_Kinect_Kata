@@ -104,11 +104,37 @@ namespace kinectKata
 
         Stopwatch value_record_timer = new Stopwatch();
 
-        private int currentPositionNumber = 0;
+        private int current_kata_id = 1;
+        private int current_position = 1;
+        
+        private List<List<double>> current_kata;
 
+        public void initializeCurrentKata()
+        {
+            this.current_kata = new List<List<double>>();
 
+            var filename = "XMLFile1.xml";
+            var currentDirectory = Directory.GetCurrentDirectory();
+            var kataFilepath = Path.Combine(currentDirectory, filename);
 
+            XElement Xkata = XElement.Load(kataFilepath);
+            IEnumerable<XElement> Xcurrent_kata = Xkata.Elements("pos");
 
+            int i = 0;
+            foreach (XElement k in Xcurrent_kata)
+            {
+                current_kata.Add(new List<double>());
+                IEnumerable<XElement> angleList = k.Elements("angle");
+
+                foreach (XElement a in angleList)
+                {
+                    var val = XmlConvert.ToDouble(a.Value.Trim());
+                    //Console.WriteLine(val);
+                    current_kata[i].Add(val);
+                }
+                i++;
+            }
+        }
 
         public MainWindow()
         {
@@ -116,9 +142,10 @@ namespace kinectKata
             this.kinectSensor = KinectSensor.GetDefault();
 
             // Open the reader for the  frames
-            // this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader (FrameSourceTypes.Body);
+            this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader
+                (FrameSourceTypes.Body);
             // Wire handler for frame arrival - This is a later defined method 
-            //this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
+            this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
 
             // Set up display frame types:
             //SetupCurrentDisplay(DEFAULT_DISPLAYFRAMETYPE);
@@ -149,10 +176,9 @@ namespace kinectKata
             this.kinectSensor.Open();
 
             InitializeComponent();
-            NextPosition();
-            UpdateStatus(true, true, true, true, true);
 
-
+            // Initialize current_kata with the kata.xml file
+            initializeCurrentKata();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -214,7 +240,8 @@ namespace kinectKata
                 default:
                     break;
             }
-        }
+        }*/
+
 
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
@@ -231,7 +258,7 @@ namespace kinectKata
                 default:
                     break;
             }
-        }*/
+        }
 
 
 
@@ -305,6 +332,8 @@ namespace kinectKata
 
             }
         }
+
+
 
         // ***************************************************************************//
         // ************************* BODY DATA PROCESSING **************************//
@@ -390,21 +419,21 @@ namespace kinectKata
 
             // Console.WriteLine(elbowL_wristL_Angle);
 
-            double error = 50;
+            double error = 30;
 
-            if (elbowL_wristL_Angle < 272.72 + error && elbowL_wristL_Angle > 272.72 - error)
+            if (elbowL_wristL_Angle < 40.27 + error && elbowL_wristL_Angle > 40.27 - error)
             {
                 elbowL_WristL = true;
             }
-            if (elbowR_wristR_Angle < 82.65 + error && elbowR_wristR_Angle > 82.65 - error)
+            if (elbowR_wristR_Angle < 38.8 + error && elbowR_wristR_Angle > 38.8 - error)
             {
                 elbowR_WristR = true;
             } 
-            if (shoulderL_elbowL_Angle < 75.35 + error && shoulderL_elbowL_Angle > 75.35 - error)
+            if (shoulderL_elbowL_Angle < 56.4 + error && shoulderL_elbowL_Angle > 56.4 - error)
             {
                 shoulderL_ElbowL = true;
             }
-            if (shoulderR_elbowR_Angle < 280.67 + error && shoulderR_elbowR_Angle > 280.67 - error)
+            if (shoulderR_elbowR_Angle < 66 + error && shoulderR_elbowR_Angle > 66 - error)
             {
                 shoulderR_ElbowR = true;
             }
@@ -420,6 +449,37 @@ namespace kinectKata
             }
 
         }
+
+         private bool CheckCurrentKataPosition(IReadOnlyDictionary<JointType, Joint> joints, Joint joint0, JointType jointType0, Joint joint1, JointType jointType1)
+         {
+             Joint shoulderL = joints[JointType.ShoulderLeft];
+             Joint shoulderR = joints[JointType.ShoulderRight];
+             Joint elbowL = joints[JointType.ElbowLeft];
+             Joint elbowR = joints[JointType.ElbowRight];
+             Joint wristL = joints[JointType.WristLeft];
+             Joint wristR = joints[JointType.WristRight];
+        
+             bool shoulderL_ElbowL = false, shoulderR_ElbowR = false, elbowL_WristL = false, elbowR_WristR = false;
+        
+             double elbowL_wristL_Angle = GetBoneAngle(elbowL.Position.X, elbowL.Position.Y, wristL.Position.X, wristL.Position.Y);
+             double shoulderL_elbowL_Angle = GetBoneAngle(shoulderL.Position.X, shoulderL.Position.Y, elbowL.Position.X, elbowL.Position.Y);
+             double elbowR_wristR_Angle = GetBoneAngle(elbowR.Position.X, elbowR.Position.Y, wristR.Position.X, wristR.Position.Y);
+             double shoulderR_elbowR_Angle = GetBoneAngle(shoulderR.Position.X, shoulderR.Position.Y, elbowR.Position.X, elbowR.Position.Y);
+        
+             shoulderL_ElbowL = ComparePositions(shoulderL_elbowL_Angle, current_kata[current_position][0]);
+             shoulderR_ElbowR = ComparePositions(shoulderR_elbowR_Angle, current_kata[current_position][1]);
+             elbowL_WristL = ComparePositions(elbowL_wristL_Angle, current_kata[current_position][2]);
+             elbowR_WristR = ComparePositions(elbowR_wristR_Angle, current_kata[current_position][3]);
+        
+             return shoulderL_ElbowL && shoulderR_ElbowR && elbowL_WristL && elbowR_WristR; 
+         }
+
+         private bool ComparePositions(double pos, double expected)
+         {
+             double error = 45;
+        
+             return pos < expected + error && pos > expected - error;
+         }
 
         private double NormalizeAngle(double angle)
         {
@@ -504,7 +564,7 @@ namespace kinectKata
 
             angle = Math.Atan(delta);
 
-            return NormalizeAngle(angle) * (180 / Math.PI);
+            return Math.Abs(angle * (180 / Math.PI));
         }
         /// Draws a hand symbol if the hand is tracked: red circle = closed, green circle = opened; blue circle = lasso ergo pointing
         private void DrawHand(HandState handState, Point handPosition, DrawingContext drawingContext)

@@ -33,4 +33,21 @@ F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectK
 F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectKata.csproj.CopyComplete
 F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectTutorial05.exe
 F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\kinectTutorial05.pdb
-F:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.AssemblyReference.cache
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\MainWindow.g.cs
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\App.g.cs
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectTutorial05_MarkupCompile.cache
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectTutorial05_MarkupCompile.lref
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectTutorial05.exe
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectTutorial05.pdb
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\bin\Debug\kinectTutorial05.exe.config
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\bin\Debug\kinectTutorial05.exe
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\bin\Debug\kinectTutorial05.pdb
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\bin\Debug\Microsoft.Kinect.xml
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\MainWindow.baml
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectTutorial05.g.resources
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectTutorial05.Properties.Resources.resources
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.GenerateResource.cache
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.CoreCompileInputs.cache
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.CopyComplete

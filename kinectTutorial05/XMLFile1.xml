@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<kata id="1">
+	<pos id="0">
+		<angle id="shoulder_elbow_L">
+			66.5
+		</angle>
+		<angle id="shoulder_elbow_R">
+			78.5
+		</angle>
+		<angle id="elbow_wrist_L">
+			21.7
+		</angle>
+		<angle id="elbow_wrist_R">
+			80.3
+		</angle>
+	</pos>
+	<pos id="1">
+		<angle id="shoulder_elbow_L">
+			56.4
+		</angle>
+		<angle id="shoulder_elbow_R">
+			66
+		</angle>
+		<angle id="elbow_wrist_L">
+			40.27
+		</angle>
+		<angle id="elbow_wrist_R">
+			38.8
+		</angle>
+	</pos>
+	<pos id="2">
+		<angle id="shoulder_elbow_L">
+			56.4
+		</angle>
+		<angle id="shoulder_elbow_R">
+			66
+		</angle>
+		<angle id="elbow_wrist_L">
+			40.27
+		</angle>
+		<angle id="elbow_wrist_R">
+			38.8
+		</angle>
+	</pos>
+	<pos id="3">
+		<angle id="shoulder_elbow_L">
+			56.4
+		</angle>
+		<angle id="shoulder_elbow_R">
+			66
+		</angle>
+		<angle id="elbow_wrist_L">
+			40.27
+		</angle>
+		<angle id="elbow_wrist_R">
+			38.8
+		</angle>
+	</pos>
+	<pos id="4">
+		<angle id="shoulder_elbow_L">
+			56.4
+		</angle>
+		<angle id="shoulder_elbow_R">
+			66
+		</angle>
+		<angle id="elbow_wrist_L">
+			40.27
+		</angle>
+		<angle id="elbow_wrist_R">
+			38.8
+		</angle>
+	</pos>
+	<pos id="5">
+		<angle id="shoulder_elbow_L">
+			24.7
+		</angle>
+		<angle id="shoulder_elbow_R">
+			15
+		</angle>
+		<angle id="elbow_wrist_L">
+			34
+		</angle>
+		<angle id="elbow_wrist_R">
+			19
+		</angle>
+	</pos>
+	<pos id="6">
+		<angle id="shoulder_elbow_L">
+			11
+		</angle>
+		<angle id="shoulder_elbow_R">
+			10
+		</angle>
+		<angle id="elbow_wrist_L">
+			15
+		</angle>
+		<angle id="elbow_wrist_R">
+			10
+		</angle>
+	</pos>
+	<pos id="7">
+		<angle id="shoulder_elbow_L">
+			60
+		</angle>
+		<angle id="shoulder_elbow_R">
+			78
+		</angle>
+		<angle id="elbow_wrist_L">
+			15.5
+		</angle>
+		<angle id="elbow_wrist_R">
+			24.12
+		</angle>
+	</pos>
+	<pos id="8">
+		<angle id="shoulder_elbow_L">
+			54
+		</angle>
+		<angle id="shoulder_elbow_R">
+			28
+		</angle>
+		<angle id="elbow_wrist_L">
+			19
+		</angle>
+		<angle id="elbow_wrist_R">
+			7
+		</angle>
+	</pos>
+	<pos id="9">
+		<angle id="shoulder_elbow_L">
+			81
+		</angle>
+		<angle id="shoulder_elbow_R">
+			62
+		</angle>
+		<angle id="elbow_wrist_L">
+			31
+		</angle>
+		<angle id="elbow_wrist_R">
+			55
+		</angle>
+	</pos>
+</kata>
