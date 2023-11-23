@@ -20,9 +20,7 @@
         <ScrollViewer Grid.Row="3" 
             ScrollViewer.HorizontalScrollBarVisibility="Auto" 
             ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="22,24,22,-62">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Skeleton View" Padding="5" UseLayoutRounding="True" Margin="5" Click="Button_Body" />
-            </StackPanel>
+
         </ScrollViewer>
     </Grid>
 </Window>

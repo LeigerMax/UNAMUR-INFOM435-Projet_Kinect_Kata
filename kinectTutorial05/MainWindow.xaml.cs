@@ -115,9 +115,27 @@ namespace kinectKata
             this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
 
             // Set up display frame types:
-            // 1. Get FrameDescription
-            // 2. Create the image object to display your data
-            SetupCurrentDisplay(DEFAULT_DISPLAYFRAMETYPE);
+            //SetupCurrentDisplay(DEFAULT_DISPLAYFRAMETYPE);
+            this.coordinateMapper = this.kinectSensor.CoordinateMapper;
+            FrameDescription bodyDepthFrameDescription = this.kinectSensor.DepthFrameSource.FrameDescription;
+            this.CurrentFrameDescription = bodyDepthFrameDescription;
+
+            // get size of the scene
+            this.displayWidthBody = bodyDepthFrameDescription.Width;
+            this.displayHeightBody = bodyDepthFrameDescription.Height;
+
+            // Define a bone as the line between two joints
+            this.bones = new List<Tuple<JointType, JointType>>();
+            // Create the body bones
+            this.defineBoneParts();
+
+            // Populate body colors that you wish to show, one for each BodyIndex:
+            this.bodyColors = new List<Pen>();
+            this.bodyIndexColors();
+
+            // We need to create a drawing group
+            this.drawingGroup = new DrawingGroup();
+
 
             // We transfer the data to our Window defined in the XAML file
             this.DataContext = this;
@@ -152,7 +170,7 @@ namespace kinectKata
             }
         }
 
-        private void SetupCurrentDisplay(DisplayFrameType newDisplayFrameType)
+        /*private void SetupCurrentDisplay(DisplayFrameType newDisplayFrameType)
         {
             currentDisplayFrameType = newDisplayFrameType;
 
@@ -186,7 +204,7 @@ namespace kinectKata
                 default:
                     break;
             }
-        }
+        }*/
 
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
@@ -597,9 +615,9 @@ namespace kinectKata
         // *************************    BUTTONS ACTIONS    **************************//
 
 
-        private void Button_Body(object sender, RoutedEventArgs e)
-        {
-            SetupCurrentDisplay(DisplayFrameType.Body);
-        }
+       // private void Button_Body(object sender, RoutedEventArgs e)
+       // {
+       //     SetupCurrentDisplay(DisplayFrameType.Body);
+       // }
     }
 }
