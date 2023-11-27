@@ -35,8 +35,8 @@ In our work, we developed a angle-based position validation system for KATA in a
 
 ## 🛠 Build with
 - [Kinect for Windows SDK 2.0](https://www.microsoft.com/en-us/download/details.aspx?id=44561)
-- [C#]([https://www.microsoft.com/en-us/download/details.aspx?id=44561](https://www.microsoft.com/en-us/download/details.aspx?id=7029))
-- [XML]([https://www.microsoft.com/en-us/download/details.aspx?id=44561](https://www.ibm.com/docs/en/tnpm/1.4.4?topic=downloads-downloading-xml-file))
+- [C#](https://www.microsoft.com/en-us/download/details.aspx?id=7029)
+- [XML](https://www.ibm.com/docs/en/tnpm/1.4.4?topic=downloads-downloading-xml-file)
 
 ## Ressources 
 To learn how to use the Kinect, follow [this tutorial](https://github.com/violetasdev/bodytrackingdepth_course)
