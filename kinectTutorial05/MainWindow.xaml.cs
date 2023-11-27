@@ -382,7 +382,11 @@ namespace kinectKata
             Joint joint0 = joints[jointType0];
             Joint joint1 = joints[jointType1];
 
-            RecordValue(joints, joint0, jointType0, joint1, jointType1);
+            if (CheckCurrentKataPosition(joints, joint0, jointType0, joint1, jointType1))
+            {
+                current_position++;
+                Console.WriteLine("Correct Position!");
+            }
             
 
 
@@ -479,7 +483,7 @@ namespace kinectKata
 
          private bool ComparePositions(double pos, double expected)
          {
-             double error = 45;
+             double error = 20;
         
              return pos < expected + error && pos > expected - error;
          }

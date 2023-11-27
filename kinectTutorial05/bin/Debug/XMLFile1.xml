@@ -17,58 +17,58 @@
 	</pos>
 	<pos id="1">
 		<angle id="shoulder_elbow_L">
-			56.4
+			61.7
 		</angle>
 		<angle id="shoulder_elbow_R">
-			66
+			55.3
 		</angle>
 		<angle id="elbow_wrist_L">
-			40.27
+			27.5
 		</angle>
 		<angle id="elbow_wrist_R">
-			38.8
+			55.7
 		</angle>
 	</pos>
 	<pos id="2">
 		<angle id="shoulder_elbow_L">
-			56.4
+			36.01
 		</angle>
 		<angle id="shoulder_elbow_R">
-			66
+			37.17
 		</angle>
 		<angle id="elbow_wrist_L">
-			40.27
+			51.23
 		</angle>
 		<angle id="elbow_wrist_R">
-			38.8
+			67.65
 		</angle>
 	</pos>
 	<pos id="3">
 		<angle id="shoulder_elbow_L">
-			56.4
+			61.7
 		</angle>
 		<angle id="shoulder_elbow_R">
-			66
+			55.3
 		</angle>
 		<angle id="elbow_wrist_L">
-			40.27
+			27.5
 		</angle>
 		<angle id="elbow_wrist_R">
-			38.8
+			55.7
 		</angle>
 	</pos>
 	<pos id="4">
 		<angle id="shoulder_elbow_L">
-			56.4
+			36.01
 		</angle>
 		<angle id="shoulder_elbow_R">
-			66
+			37.17
 		</angle>
 		<angle id="elbow_wrist_L">
-			40.27
+			51.23
 		</angle>
 		<angle id="elbow_wrist_R">
-			38.8
+			67.65
 		</angle>
 	</pos>
 	<pos id="5">
