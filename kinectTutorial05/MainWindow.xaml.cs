@@ -114,6 +114,8 @@ namespace kinectKata
         
         private List<List<double>> current_kata;
 
+        private System.Timers.Timer timer;
+
         public void initializeCurrentKata()
         {
             this.current_kata = new List<List<double>>();
@@ -187,6 +189,8 @@ namespace kinectKata
 
             // Initialize current_kata with the kata.xml file
             initializeCurrentKata();
+
+            UpdateStatus(true, true, true, true, true);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -262,7 +266,6 @@ namespace kinectKata
             }
     
         }
-
 
 
 
@@ -383,7 +386,6 @@ namespace kinectKata
             Joint joint1 = joints[jointType1];
 
             RecordValue(joints, joint0, jointType0, joint1, jointType1);
-            
 
 
             // If we can't find either of these joints, we cannot draw them! Exit
@@ -441,14 +443,19 @@ namespace kinectKata
                 shoulderR_ElbowR = true;
             }
 
-
-
-            if (shoulderR_ElbowR && elbowR_WristR && shoulderL_ElbowL && elbowL_WristL)
+            if (shoulderR_ElbowR && elbowR_WristR)
             {
-                Console.WriteLine("Correct Position!");
-            }else
+                UpdateStatus(true,true,false,true,true);
+                if (shoulderL_ElbowL && elbowL_WristL)
+                {
+                    Console.WriteLine("Correct Position!");
+                    UpdateStatus(true, true, true, true, true);
+                }
+            }
+            else
             {
-                Console.WriteLine("Incorrect Position!"); 
+                Console.WriteLine("Incorrect Position!");
+                UpdateStatus(false,false,false,false,false);
             }
 
         }
@@ -473,8 +480,24 @@ namespace kinectKata
              shoulderR_ElbowR = ComparePositions(shoulderR_elbowR_Angle, current_kata[current_position][1]);
              elbowL_WristL = ComparePositions(elbowL_wristL_Angle, current_kata[current_position][2]);
              elbowR_WristR = ComparePositions(elbowR_wristR_Angle, current_kata[current_position][3]);
-        
-             return shoulderL_ElbowL && shoulderR_ElbowR && elbowL_WristL && elbowR_WristR; 
+
+            
+            if (shoulderR_ElbowR && elbowR_WristR)
+            {
+                UpdateStatus(true, true, false, true, true);
+                if (shoulderL_ElbowL && elbowL_WristL)
+                {
+                    Console.WriteLine("Correct Position!");
+                    UpdateStatus(true, true, true, true, true);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Incorrect Position!");
+                UpdateStatus(false, false, false, false, false);
+            }
+
+            return shoulderL_ElbowL && shoulderR_ElbowR && elbowL_WristL && elbowR_WristR; 
          }
 
          private bool ComparePositions(double pos, double expected)
@@ -697,16 +720,38 @@ namespace kinectKata
         // *************************        INTERFACE       **************************//
         private void HandleSuccessfulPosition()
         {
-            SuccessMessage.Visibility = Visibility.Visible;
+            Dispatcher.Invoke(() =>
+            {
+                SuccessMessage.Visibility = Visibility.Visible;
+            });
+
+            timer = new System.Timers.Timer(10000); 
+            timer.Elapsed += OnTimerElapsed;
+            timer.AutoReset = false; 
+
+            timer.Start();
+
+        }
+
+        private void OnTimerElapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            timer.Stop();
+
+            NextPosition();
         }
 
         private void NextPosition()
         {
-            SuccessMessage.Visibility = Visibility.Collapsed;
-            PositionName.Text = $"Position : {current_position} - TestName ";
+            current_position = current_position + 1;
 
-            Uri newImageSource = new Uri($"/position{current_position}.png", UriKind.Relative);
-            image_example.Source = new BitmapImage(newImageSource);
+            Dispatcher.Invoke(() =>
+            {
+                SuccessMessage.Visibility = Visibility.Collapsed;
+                PositionName.Text = $"Position : {current_position} - TestName ";
+                Uri newImageSource = new Uri($"/position{current_position}.png", UriKind.Relative);
+                image_example.Source = new BitmapImage(newImageSource);
+            });
+            
         }
 
         private void UpdateStatus(bool isTorsoOK, bool isRightArmOK, bool isLeftArmOK, bool isRightLegOK, bool isLeftLegOK)
@@ -714,15 +759,15 @@ namespace kinectKata
             TorsoStatus.Text = "Torse: " + (isTorsoOK ? "OK" : "KO");
             RightArmStatus.Text = "Right Arm: " + (isRightArmOK ? "OK" : "KO");
             LeftArmStatus.Text = "Left Arm: " + (isLeftArmOK ? "OK" : "KO");
-            RightLegStatus.Text = "Right Leg: " + (isRightLegOK ? "OK" : "KO");
-            LeftLegStatus.Text = "Left Leg: " + (isLeftLegOK ? "OK" : "KO");
+            //RightLegStatus.Text = "Right Leg: " + (isRightLegOK ? "OK" : "KO");
+            //LeftLegStatus.Text = "Left Leg: " + (isLeftLegOK ? "OK" : "KO");
 
-            if (isTorsoOK && isRightArmOK && isLeftArmOK && isRightLegOK && isLeftLegOK)
+            //if (isTorsoOK && isRightArmOK && isLeftArmOK && isRightLegOK && isLeftLegOK)
+            if (isRightArmOK && isLeftArmOK)
             {
                 HandleSuccessfulPosition();
             }
         }
-
 
 
     }

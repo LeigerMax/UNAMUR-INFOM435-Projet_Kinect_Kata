@@ -26,7 +26,7 @@
 
 
         <TextBlock x:Name="SuccessMessage" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Green" Text="Position Successful!" Visibility="Visible" Grid.Column="2" Margin="423,33,0,0" />
-        <TextBlock x:Name="PositionName" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="Black" Text="Position : " Visibility="Visible" Margin="14,33,0,0" Grid.ColumnSpan="3" Width="238" />
+        <TextBlock x:Name="PositionName" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="Black" Text="Position : 1 - TestName" Visibility="Visible" Margin="14,33,0,0" Grid.ColumnSpan="3" Width="238" />
 
 
         <StackPanel x:Name="membresOk" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="2" Margin="132,18,0,378" Width="155">
