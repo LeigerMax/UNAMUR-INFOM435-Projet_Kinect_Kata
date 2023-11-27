@@ -374,44 +374,6 @@ namespace kinectKata
 
         }
 
-        private void CheckPosition(IReadOnlyDictionary<JointType, Joint> joints, Joint joint0, JointType jointType0, Joint joint1, JointType jointType1)
-        {
-            Joint shoulderL = joints[JointType.ShoulderLeft];
-            Joint shoulderR = joints[JointType.ShoulderRight];
-            Joint elbowL = joints[JointType.ElbowLeft];
-            Joint elbowR = joints[JointType.ElbowRight];
-            Joint wristL = joints[JointType.WristLeft];
-            Joint wristR = joints[JointType.WristRight];
-
-            bool shoulderL_ElbowL = false, shoulderR_ElbowR = false, elbowL_WristL = false, elbowR_WristR = false;
-
-            double elbowL_wristL_Angle = GetBoneAngle(elbowL.Position.X, elbowL.Position.Y, wristL.Position.X, wristL.Position.Y);
-            double shoulderL_elbowL_Angle = GetBoneAngle(shoulderL.Position.X, shoulderL.Position.Y, elbowL.Position.X, elbowL.Position.Y);
-            double elbowR_wristR_Angle = GetBoneAngle(elbowR.Position.X, elbowR.Position.Y, wristR.Position.X, wristR.Position.Y);
-            double shoulderR_elbowR_Angle = GetBoneAngle(shoulderR.Position.X, shoulderR.Position.Y, elbowR.Position.X, elbowR.Position.Y);
-
-            // Console.WriteLine(elbowL_wristL_Angle);
-
-            double error = 30;
-
-            if (elbowL_wristL_Angle < 40.27 + error && elbowL_wristL_Angle > 40.27 - error)
-            {
-                elbowL_WristL = true;
-            }
-            if (elbowR_wristR_Angle < 38.8 + error && elbowR_wristR_Angle > 38.8 - error)
-            {
-                elbowR_WristR = true;
-            } 
-            if (shoulderL_elbowL_Angle < 56.4 + error && shoulderL_elbowL_Angle > 56.4 - error)
-            {
-                shoulderL_ElbowL = true;
-            }
-            if (shoulderR_elbowR_Angle < 66 + error && shoulderR_elbowR_Angle > 66 - error)
-            {
-                shoulderR_ElbowR = true;
-            }
-
-        }
 
          private bool CheckCurrentKataPosition(IReadOnlyDictionary<JointType, Joint> joints, Joint joint0, JointType jointType0, Joint joint1, JointType jointType1)
          {
