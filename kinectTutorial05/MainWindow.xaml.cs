@@ -27,11 +27,11 @@ using System.Globalization;
 
 namespace kinectKata
 {
-    /*
+    
     public enum DisplayFrameType
     {
         Body
-    }*/
+    }
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         // Setup interface option selection
@@ -43,9 +43,9 @@ namespace kinectKata
         // Object to write the image to show on the interface for DEPTH, COLOR and INFRARED sources
         private WriteableBitmap bitmap = null;
         private FrameDescription currentFrameDescription;
-        //private DisplayFrameType currentDisplayFrameType;
+        private DisplayFrameType currentDisplayFrameType;
         // Reader to receive the information from the camera
-        //private MultiSourceFrameReader multiSourceFrameReader = null;
+        private MultiSourceFrameReader multiSourceFrameReader = null;
 
 
 
@@ -147,10 +147,13 @@ namespace kinectKata
             this.kinectSensor = KinectSensor.GetDefault();
 
             // Open the reader for the  frames
-            /*this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader
-                (FrameSourceTypes.Body);*/
+            this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader
+                (FrameSourceTypes.Body);
             // Wire handler for frame arrival - This is a later defined method 
-           // this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
+             this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
+
+
+
 
             // Set up display frame types:
             //SetupCurrentDisplay(DEFAULT_DISPLAYFRAMETYPE);
@@ -247,23 +250,18 @@ namespace kinectKata
             }
         }*/
 
-        /*
+        
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             MultiSourceFrame multiSourceFrame = e.FrameReference.AcquireFrame();
 
-            switch (currentDisplayFrameType)
+
+            using (BodyFrame bodyFrame = multiSourceFrame.BodyFrameReference.AcquireFrame())
             {
-                case DisplayFrameType.Body:
-                    using (BodyFrame bodyFrame = multiSourceFrame.BodyFrameReference.AcquireFrame())
-                    {
-                        ShowBodyFrame(bodyFrame);
-                    }
-                    break;
-                default:
-                    break;
+                ShowBodyFrame(bodyFrame);
             }
-        }*/
+    
+        }
 
 
 
