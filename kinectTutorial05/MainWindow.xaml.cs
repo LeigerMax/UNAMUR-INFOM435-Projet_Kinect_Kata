@@ -136,7 +136,6 @@ namespace kinectKata
                 foreach (XElement a in angleList)
                 {
                     var val = XmlConvert.ToDouble(a.Value.Trim());
-                    //Console.WriteLine(val);
                     current_kata[i].Add(val);
                 }
                 i++;
@@ -217,42 +216,6 @@ namespace kinectKata
                 }
             }
         }
-
-        /*private void SetupCurrentDisplay(DisplayFrameType newDisplayFrameType)
-        {
-            currentDisplayFrameType = newDisplayFrameType;
-
-            switch (currentDisplayFrameType)
-
-            {
-
-                case DisplayFrameType.Body:
-                    this.coordinateMapper = this.kinectSensor.CoordinateMapper;
-                    FrameDescription bodyDepthFrameDescription = this.kinectSensor.DepthFrameSource.FrameDescription;
-                    this.CurrentFrameDescription = bodyDepthFrameDescription;
-
-                    // get size of the scene
-                    this.displayWidthBody = bodyDepthFrameDescription.Width;
-                    this.displayHeightBody = bodyDepthFrameDescription.Height;
-
-                    // Define a bone as the line between two joints
-                    this.bones = new List<Tuple<JointType, JointType>>();
-                    // Create the body bones
-                    this.defineBoneParts();
-
-                    // Populate body colors that you wish to show, one for each BodyIndex:
-                    this.bodyColors = new List<Pen>();
-                    this.bodyIndexColors();
-
-                    // We need to create a drawing group
-                    this.drawingGroup = new DrawingGroup();
-                   
-                    break;
-
-                default:
-                    break;
-            }
-        }*/
 
         
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
@@ -447,22 +410,6 @@ namespace kinectKata
             {
                 shoulderR_ElbowR = true;
             }
-
-            /*
-            if (shoulderR_ElbowR && elbowR_WristR)
-            {
-                UpdateStatus(true,true,false,true,true);
-                if (shoulderL_ElbowL && elbowL_WristL)
-                {
-                    Console.WriteLine("Correct Position!");
-                    UpdateStatus(true, true, true, true, true);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Incorrect Position!");
-                UpdateStatus(false,false,false,false,false);
-            }*/
 
         }
 
@@ -712,15 +659,6 @@ namespace kinectKata
 
 
         // ***************************************************************************//
-        // *************************    BUTTONS ACTIONS    **************************//
-
-
-        // private void Button_Body(object sender, RoutedEventArgs e)
-        // {
-        //     SetupCurrentDisplay(DisplayFrameType.Body);
-        // }
-
-        // ***************************************************************************//
         // *************************        INTERFACE       **************************//
         private void HandleSuccessfulPosition()
         {
@@ -729,7 +667,7 @@ namespace kinectKata
                 SuccessMessage.Visibility = Visibility.Visible;
             });
 
-            timer = new System.Timers.Timer(10000); 
+            timer = new System.Timers.Timer(1000); 
             timer.Elapsed += OnTimerElapsed;
             timer.AutoReset = false; 
 
@@ -751,7 +689,7 @@ namespace kinectKata
             Dispatcher.Invoke(() =>
             {
                 SuccessMessage.Visibility = Visibility.Collapsed;
-                PositionName.Text = $"Position : {current_position} - TestName ";
+                PositionName.Text = $"Position : {current_position} ";
                 Uri newImageSource = new Uri($"/position{current_position}.png", UriKind.Relative);
                 image_example.Source = new BitmapImage(newImageSource);
             });
