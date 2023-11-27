@@ -190,7 +190,7 @@ namespace kinectKata
             // Initialize current_kata with the kata.xml file
             initializeCurrentKata();
 
-            UpdateStatus(true, true, true, true, true);
+            UpdateStatus(false,false,false,false,false);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -448,6 +448,7 @@ namespace kinectKata
                 shoulderR_ElbowR = true;
             }
 
+            /*
             if (shoulderR_ElbowR && elbowR_WristR)
             {
                 UpdateStatus(true,true,false,true,true);
@@ -461,7 +462,7 @@ namespace kinectKata
             {
                 Console.WriteLine("Incorrect Position!");
                 UpdateStatus(false,false,false,false,false);
-            }
+            }*/
 
         }
 
@@ -492,13 +493,11 @@ namespace kinectKata
                 UpdateStatus(true, true, false, true, true);
                 if (shoulderL_ElbowL && elbowL_WristL)
                 {
-                    Console.WriteLine("Correct Position!");
                     UpdateStatus(true, true, true, true, true);
                 }
             }
             else
             {
-                Console.WriteLine("Incorrect Position!");
                 UpdateStatus(false, false, false, false, false);
             }
 
@@ -747,7 +746,7 @@ namespace kinectKata
 
         private void NextPosition()
         {
-            current_position = current_position + 1;
+            //current_position = current_position + 1;
 
             Dispatcher.Invoke(() =>
             {
