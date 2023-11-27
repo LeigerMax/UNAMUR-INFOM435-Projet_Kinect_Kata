@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Threading;
+using System.Xml;
+using System.Xml.Linq;
+using System.Threading.Tasks;
+using System.IO;
+
 
 using System.ComponentModel;
 
@@ -115,7 +120,7 @@ namespace kinectKata
 
             var filename = "XMLFile1.xml";
             var currentDirectory = Directory.GetCurrentDirectory();
-            var kataFilepath = Path.Combine(currentDirectory, filename);
+            var kataFilepath = System.IO.Path.Combine(currentDirectory, filename);
 
             XElement Xkata = XElement.Load(kataFilepath);
             IEnumerable<XElement> Xcurrent_kata = Xkata.Elements("pos");
@@ -142,10 +147,10 @@ namespace kinectKata
             this.kinectSensor = KinectSensor.GetDefault();
 
             // Open the reader for the  frames
-            this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader
-                (FrameSourceTypes.Body);
+            /*this.multiSourceFrameReader = this.kinectSensor.OpenMultiSourceFrameReader
+                (FrameSourceTypes.Body);*/
             // Wire handler for frame arrival - This is a later defined method 
-            this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
+           // this.multiSourceFrameReader.MultiSourceFrameArrived += this.Reader_MultiSourceFrameArrived;
 
             // Set up display frame types:
             //SetupCurrentDisplay(DEFAULT_DISPLAYFRAMETYPE);
@@ -242,7 +247,7 @@ namespace kinectKata
             }
         }*/
 
-
+        /*
         private void Reader_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e)
         {
             MultiSourceFrame multiSourceFrame = e.FrameReference.AcquireFrame();
@@ -258,7 +263,7 @@ namespace kinectKata
                 default:
                     break;
             }
-        }
+        }*/
 
 
 
@@ -700,9 +705,9 @@ namespace kinectKata
         private void NextPosition()
         {
             SuccessMessage.Visibility = Visibility.Collapsed;
-            PositionName.Text = $"Position : {currentPositionNumber} - TestName ";
+            PositionName.Text = $"Position : {current_position} - TestName ";
 
-            Uri newImageSource = new Uri($"/position{currentPositionNumber}.png", UriKind.Relative);
+            Uri newImageSource = new Uri($"/position{current_position}.png", UriKind.Relative);
             image_example.Source = new BitmapImage(newImageSource);
         }
 
