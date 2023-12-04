@@ -93,7 +93,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="currentPositionNumber.cs" />
     <Compile Include="MainMessage.xaml.cs">
       <DependentUpon>MainMessage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +147,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="position_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_13.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

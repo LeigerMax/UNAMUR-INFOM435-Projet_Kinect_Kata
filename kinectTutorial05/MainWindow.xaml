@@ -42,13 +42,13 @@
             <Image x:Name="FrameDisplayImage" Stretch="UniformToFill"/>
         </Viewbox>
 
-        <Image x:Name="image_example" HorizontalAlignment="Left" Height="382" Margin="888,284,0,0" VerticalAlignment="Top" Width="314" Grid.Column="1" Grid.Row="1" Stretch="Fill" Source="/position_1.png"/>
+        <Image x:Name="image_example" HorizontalAlignment="Left" Height="382" Margin="888,284,0,0" VerticalAlignment="Top" Width="314" Grid.Column="1" Grid.Row="1" Stretch="Fill" Source="/position_13.png"/>
 
         <Rectangle Grid.Column="1" HorizontalAlignment="Right" Height="148" Margin="0,0,375,0" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="618"/>
         <Button x:Name="Next" Grid.Column="1" Content="Next" HorizontalAlignment="Left" Margin="1045,68,0,0" Grid.Row="1" VerticalAlignment="Top" Height="48" Width="129" BorderThickness="1,1,1,1" FontWeight="Bold" FontSize="20" Click="Next_Click"/>
         <Button x:Name="Before" Grid.Column="1" Content="Before" HorizontalAlignment="Left" Margin="888,68,0,0" Grid.Row="1" VerticalAlignment="Top" Height="48" Width="129" BorderThickness="1,1,1,1" FontWeight="Bold" FontSize="20"  Click="Before_Click"/>
         <Image HorizontalAlignment="Left" Height="102" Margin="0,23,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="173" Source="/logo_kata.png" Grid.Column="1"/>
-        <TextBlock x:Name="SuccessMessage" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="Green" Text=" Position Successful! " Visibility="Visible" Margin="201,241,0,0" Background="#3300FF00"/>
+        <TextBlock x:Name="SuccessMessage" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="Green" Text=" Position Successful! " Visibility="Collapsed" Margin="201,241,0,0" Background="#3300FF00"/>
         <TextBlock HorizontalAlignment="Left" Margin="23,746,0,0" Grid.Row="1" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Text="If you have any problems recognising the skeleton, please remove any loose clothing." VerticalAlignment="Top" Width="1164" Grid.ColumnSpan="2"/>
 
 
