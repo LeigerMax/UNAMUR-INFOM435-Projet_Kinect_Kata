@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kinectTutorial05"
         mc:Ignorable="d"
-                Title="Kinect Kata" Height="512" Width="789" Background="White">
+                Title="Kinect Kata" Height="800" Width="1300" Background="White">
 
 
     <Grid Margin="10,12,10,12">
@@ -20,32 +20,37 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Rectangle Fill="Silver" Grid.ColumnSpan="2" Margin="0,0,0,360" Grid.RowSpan="2" Stroke="Black" />
-        <Image HorizontalAlignment="Left" Height="62" Grid.RowSpan="2" VerticalAlignment="Top" Width="53" Source="/logo.png" Margin="664,-7,0,0" Grid.Column="1"/>
+        <Rectangle Fill="Silver" HorizontalAlignment="Left" Height="522" Margin="871,201,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="352" Grid.Column="1"/>
+
+        <Rectangle Fill="Silver" HorizontalAlignment="Left" Height="522" Margin="23,201,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="865" Grid.ColumnSpan="2"/>
+
+        <Rectangle Fill="Silver" Grid.ColumnSpan="2" Margin="0,0,0,600" Grid.RowSpan="2" Stroke="Black" />
+        <Image HorizontalAlignment="Left" Height="62" Grid.RowSpan="2" VerticalAlignment="Top" Width="53" Source="/logo.png" Margin="1149,10,0,0" Grid.Column="1"/>
 
 
-        <TextBlock x:Name="SuccessMessage" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Foreground="Green" Text="Position Successful!" Visibility="Collapsed" Grid.Column="1" Margin="523,43,0,0" />
-        <TextBlock x:Name="PositionName" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Foreground="Black" Text="Position : 1 " Visibility="Visible" Margin="14,33,0,0" Grid.ColumnSpan="3" Width="238" />
+        <TextBlock x:Name="SuccessMessage" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="Green" Text="Position Successful!" Visibility="Visible" Grid.Column="1" Margin="201,241,0,0" />
+        <TextBlock x:Name="PositionName" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Foreground="Black" Text="Position : 1 " Visibility="Visible" Margin="311,53,0,0" Width="238" Grid.Column="1" />
 
 
-        <StackPanel x:Name="membresOk" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Margin="232,18,0,378" Width="155">
-            <TextBlock x:Name="TorsoStatus" FontSize="14" FontWeight="Bold" Foreground="Blue" Text="Torse: " Visibility="Visible"/>
-            <TextBlock x:Name="RightArmStatus" FontSize="14" FontWeight="Bold" Foreground="Red" Text="Right Arm: " Visibility="Visible"/>
-            <TextBlock x:Name="LeftArmStatus" FontSize="14" FontWeight="Bold" Foreground="Orange" Text="Left Arm: " Visibility="Visible"/>
+        <StackPanel x:Name="membresOk" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Margin="554,18,0,380" Width="200">
+            <TextBlock x:Name="TorsoStatus" FontSize="25" FontWeight="Bold" Foreground="Blue" Text="Torse: " Visibility="Visible"/>
+            <TextBlock x:Name="RightArmStatus" FontSize="25" FontWeight="Bold" Foreground="Red" Text="Right Arm: " Visibility="Visible"/>
+            <TextBlock x:Name="LeftArmStatus" FontSize="25" FontWeight="Bold" Foreground="Orange" Text="Left Arm: " Visibility="Visible"/>
         </StackPanel>
-        <StackPanel x:Name="membresOk2" Grid.Row="1" HorizontalAlignment="Left" Grid.Column="1" Margin="370,18,0,387" Width="156">
-            <TextBlock x:Name="RightLegStatus" FontSize="14" FontWeight="Bold" Foreground="Green" Text="Right Leg: / " Visibility="Visible"/>
-            <TextBlock x:Name="LeftLegStatus" FontSize="14" FontWeight="Bold" Foreground="Purple" Text="Left Leg: / " Visibility="Visible"/>
-        </StackPanel>
 
 
-        <Viewbox Grid.Row="1" Grid.Column="1" Margin="0,0,341,11" Height="350" VerticalAlignment="Bottom">
+
+        <Viewbox Grid.Row="1" Margin="46,0,414,51" Height="494" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
             <Image x:Name="FrameDisplayImage" Stretch="UniformToFill"/>
         </Viewbox>
 
-        <Image x:Name="image_example" HorizontalAlignment="Left" Height="305" Margin="508,169,0,0" VerticalAlignment="Top" Width="233" Grid.Column="1" Source="/position_0.png" Grid.Row="1" Grid.RowSpan="3"/>
+        <Image x:Name="image_example" HorizontalAlignment="Left" Height="382" Margin="888,284,0,0" VerticalAlignment="Top" Width="314" Grid.Column="1" Grid.Row="1" Stretch="Fill" Source="/position_5.png"/>
 
-        <Rectangle Grid.Column="1" HorizontalAlignment="Right" Height="89" Margin="0,0,242,0" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="300"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Right" Height="137" Margin="0,0,375,0" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="618"/>
+        <Button x:Name="Next" Grid.Column="1" Content="Next" HorizontalAlignment="Left" Margin="1045,68,0,0" Grid.Row="1" VerticalAlignment="Top" Height="48" Width="129" BorderThickness="1,1,1,1" FontWeight="Bold" FontSize="20" Click="Next_Click"/>
+        <Button x:Name="Before" Grid.Column="1" Content="Before" HorizontalAlignment="Left" Margin="888,68,0,0" Grid.Row="1" VerticalAlignment="Top" Height="48" Width="129" BorderThickness="1,1,1,1" FontWeight="Bold" FontSize="20"  Click="Before_Click"/>
+        <Image HorizontalAlignment="Left" Height="102" Margin="0,23,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="173" Source="/logo_kata.png" Grid.Column="1"/>
+
 
     </Grid>
 </Window>
