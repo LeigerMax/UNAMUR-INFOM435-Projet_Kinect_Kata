@@ -125,10 +125,22 @@
     <Resource Include="logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="position_0.png" />
+    <Resource Include="logo_kata.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="position_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="position_5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
