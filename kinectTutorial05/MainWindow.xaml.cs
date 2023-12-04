@@ -24,6 +24,7 @@ using System.ComponentModel;
 using Microsoft.Kinect;
 using System.Diagnostics;
 using System.Globalization;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace kinectKata
 {
@@ -111,6 +112,7 @@ namespace kinectKata
 
         private int current_kata_id = 1;
         private int current_position = 1;
+        private int position_hold_timer = 0;
         
         private List<List<double>> current_kata;
 
@@ -348,12 +350,20 @@ namespace kinectKata
             Joint joint0 = joints[jointType0];
             Joint joint1 = joints[jointType1];
 
+            //RecordValue(joints, joint0, jointType0, joint1, jointType1);
             if (CheckCurrentKataPosition(joints, joint0, jointType0, joint1, jointType1))
             {
-                current_position++;
+                position_hold_timer++;
                 Console.WriteLine("Correct Position!");
+            } else
+            {
+                position_hold_timer = 0;
             }
-            
+            if (position_hold_timer >= 30)
+            {
+                current_position++;
+                position_hold_timer = 0;
+            }
 
 
             // If we can't find either of these joints, we cannot draw them! Exit
@@ -425,9 +435,13 @@ namespace kinectKata
              bool shoulderL_ElbowL = false, shoulderR_ElbowR = false, elbowL_WristL = false, elbowR_WristR = false;
         
              double elbowL_wristL_Angle = GetBoneAngle(elbowL.Position.X, elbowL.Position.Y, wristL.Position.X, wristL.Position.Y);
+            Console.WriteLine("elbow_wrist_L: " + elbowL_wristL_Angle);
              double shoulderL_elbowL_Angle = GetBoneAngle(shoulderL.Position.X, shoulderL.Position.Y, elbowL.Position.X, elbowL.Position.Y);
+            Console.WriteLine("shoulderL_elbowL_Angle: " + shoulderL_elbowL_Angle);
              double elbowR_wristR_Angle = GetBoneAngle(elbowR.Position.X, elbowR.Position.Y, wristR.Position.X, wristR.Position.Y);
+            Console.WriteLine("elbowR_wristR_Angle: " + elbowR_wristR_Angle);
              double shoulderR_elbowR_Angle = GetBoneAngle(shoulderR.Position.X, shoulderR.Position.Y, elbowR.Position.X, elbowR.Position.Y);
+            Console.WriteLine("shoulderR_elbowR_Angle: " + shoulderR_elbowR_Angle);
         
              shoulderL_ElbowL = ComparePositions(shoulderL_elbowL_Angle, current_kata[current_position][0]);
              shoulderR_ElbowR = ComparePositions(shoulderR_elbowR_Angle, current_kata[current_position][1]);
@@ -453,8 +467,7 @@ namespace kinectKata
 
          private bool ComparePositions(double pos, double expected)
          {
-             double error = 20;
-        
+            double error = 15;        
              return pos < expected + error && pos > expected - error;
          }
 
