@@ -690,10 +690,22 @@ namespace kinectKata
                 current_position++;
                 NextPosition();
             }
+            if(current_position == 31)
+            {
+                AfficherNouvelleFenetre();
+            }
             else
             {
                 NextPosition();
             }
+        }
+
+        private void AfficherNouvelleFenetre()
+        {
+            MessageWindow nouvelleFenetre = new MessageWindow();
+            nouvelleFenetre.ShowDialog();
+            current_position = 1;
+            NextPosition();
         }
 
         private void Before_Click(object sender, RoutedEventArgs e)
