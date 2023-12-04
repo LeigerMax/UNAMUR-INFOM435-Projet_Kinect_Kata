@@ -646,13 +646,13 @@ namespace kinectKata
 
         private void NextPosition()
         {
-            //current_position = current_position + 1;
+        
 
             Dispatcher.Invoke(() =>
             {
                 SuccessMessage.Visibility = Visibility.Collapsed;
                 PositionName.Text = $"Position : {current_position} ";
-                Uri newImageSource = new Uri($"/position{current_position}.png", UriKind.Relative);
+                Uri newImageSource = new Uri($"/position_{current_position}.png", UriKind.Relative);
                 image_example.Source = new BitmapImage(newImageSource);
             });
             
@@ -663,17 +663,37 @@ namespace kinectKata
             TorsoStatus.Text = "Torse: " + (isTorsoOK ? "OK" : "KO");
             RightArmStatus.Text = "Right Arm: " + (isRightArmOK ? "OK" : "KO");
             LeftArmStatus.Text = "Left Arm: " + (isLeftArmOK ? "OK" : "KO");
-            //RightLegStatus.Text = "Right Leg: " + (isRightLegOK ? "OK" : "KO");
-            //LeftLegStatus.Text = "Left Leg: " + (isLeftLegOK ? "OK" : "KO");
 
-            //if (isTorsoOK && isRightArmOK && isLeftArmOK && isRightLegOK && isLeftLegOK)
             if (isRightArmOK && isLeftArmOK)
             {
                 HandleSuccessfulPosition();
             }
         }
 
+        private void Next_Click(object sender, RoutedEventArgs e)
+        {
+            if (current_position < 31)
+            {
+                current_position++;
+                NextPosition();
+            }
+            else
+            {
+                NextPosition();
+            }
+        }
 
+        private void Before_Click(object sender, RoutedEventArgs e)
+        {
+            if(current_position < 2)
+            {
+                NextPosition();
+            }
+            else {
+                current_position--;
+                NextPosition();
+            }
+        }
     }
 
 
