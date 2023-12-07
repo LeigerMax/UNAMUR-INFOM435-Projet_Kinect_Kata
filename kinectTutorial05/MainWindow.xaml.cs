@@ -369,7 +369,14 @@ namespace kinectKata
             }
             if (position_hold_timer >= 30)
             {
-                current_position++;
+                if (current_position + 1 >= current_kata.Count)
+                {
+                    current_position = 0;
+                }
+                else
+                {
+                    current_position++;
+                }
                 position_hold_timer = 0;
             }
 
