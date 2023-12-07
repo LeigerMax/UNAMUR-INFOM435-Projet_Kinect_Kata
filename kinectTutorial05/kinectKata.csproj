@@ -172,5 +172,60 @@
   <ItemGroup>
     <Resource Include="position_13.png" />
   </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_14.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_15.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_16.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_17.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_18.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_19.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_20.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_21.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_22.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_23.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_24.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_25.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_26.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_27.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_28.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_29.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_30.png" />
+  </ItemGroup>
+    <ItemGroup>
+    <Resource Include="position_31.png" />
+  </ItemGroup>
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

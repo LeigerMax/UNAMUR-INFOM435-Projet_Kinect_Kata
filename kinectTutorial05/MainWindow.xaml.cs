@@ -187,6 +187,7 @@ namespace kinectKata
             this.kinectSensor.Open();
 
             InitializeComponent();
+            ResizeMode = ResizeMode.NoResize;
 
             // Initialize current_kata with the kata.xml file
             initializeCurrentKata();
@@ -258,7 +259,7 @@ namespace kinectKata
                 using (DrawingContext dc = this.drawingGroup.Open())
                 {
                     // Draw a transparent background to set the render size
-                    dc.DrawRectangle(Brushes.DarkViolet, null, new Rect(0.0, 0.0, this.displayWidthBody, this.displayHeightBody));
+                    dc.DrawRectangle(Brushes.Silver, null, new Rect(0.0, 0.0, this.displayWidthBody, this.displayHeightBody));
 
                     int penIndex = 0;
                     foreach (Body body in this.bodies)
@@ -314,8 +315,8 @@ namespace kinectKata
         /// </summary>
         private void DrawBody(IReadOnlyDictionary<JointType, Joint> joints, IDictionary<JointType, Point> jointPoints, DrawingContext drawingContext, Pen drawingPen)
         {
-            // Background in black
-            drawingContext.DrawRectangle(Brushes.Black, null, new Rect(0, 0, ActualWidth, ActualHeight));
+            // Background in Silver
+            drawingContext.DrawRectangle(Brushes.Silver, null, new Rect(0, 0, ActualWidth, ActualHeight));
 
 
             // Draw the bones
