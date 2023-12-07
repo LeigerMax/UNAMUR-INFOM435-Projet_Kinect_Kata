@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:kinectTutorial05"
         mc:Ignorable="d"
-                Title="Kinect Kata" Height="800" Width="1300" Background="White">
+                Title="Kinect Kata" Height="850" Width="1300" Background="White">
 
 
-    <Grid Margin="10,12,10,12">
+    <Grid Margin="0,12,20,12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="28*"/>
             <ColumnDefinition Width="741*"/>
@@ -24,11 +24,9 @@
 
         <Rectangle Fill="Silver" HorizontalAlignment="Left" Height="522" Margin="23,201,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="865" Grid.ColumnSpan="2"/>
 
-        <Rectangle Fill="Silver" Grid.ColumnSpan="2" Margin="0,0,0,600" Grid.RowSpan="2" Stroke="Black" />
+        <Rectangle Fill="Silver" Grid.ColumnSpan="2" Margin="0,0,0,639" Grid.RowSpan="2" Stroke="Black" />
         <Image HorizontalAlignment="Left" Height="62" Grid.RowSpan="2" VerticalAlignment="Top" Width="53" Source="/logo.png" Margin="1149,10,0,0" Grid.Column="1"/>
 
-
-        <TextBlock x:Name="SuccessMessage" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="Green" Text="Position Successful!" Visibility="Visible" Grid.Column="1" Margin="201,241,0,0" />
         <TextBlock x:Name="PositionName" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" Foreground="Black" Text="Position : 1 " Visibility="Visible" Margin="311,53,0,0" Width="238" Grid.Column="1" />
 
 
@@ -40,19 +38,22 @@
 
 
 
-        <Viewbox Grid.Row="1" Margin="46,0,414,51" Height="494" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+        <Viewbox Grid.Row="1" Margin="46,0,414,37" Height="495" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
             <Image x:Name="FrameDisplayImage" Stretch="UniformToFill"/>
         </Viewbox>
 
-        <Image x:Name="image_example" HorizontalAlignment="Left" Height="382" Margin="888,284,0,0" VerticalAlignment="Top" Width="314" Grid.Column="1" Grid.Row="1" Stretch="Fill" Source="/position_1.png"/>
+        <Image x:Name="image_example" HorizontalAlignment="Left" Height="382" Margin="888,284,0,0" VerticalAlignment="Top" Width="314" Grid.Column="1" Grid.Row="1" Stretch="Fill" Source="/position_13.png"/>
 
-        <Rectangle Grid.Column="1" HorizontalAlignment="Right" Height="137" Margin="0,0,375,0" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="618"/>
+        <Rectangle Grid.Column="1" HorizontalAlignment="Right" Height="148" Margin="0,0,375,0" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="618"/>
         <Button x:Name="Next" Grid.Column="1" Content="Next" HorizontalAlignment="Left" Margin="1045,68,0,0" Grid.Row="1" VerticalAlignment="Top" Height="48" Width="129" BorderThickness="1,1,1,1" FontWeight="Bold" FontSize="20" Click="Next_Click"/>
         <Button x:Name="Before" Grid.Column="1" Content="Before" HorizontalAlignment="Left" Margin="888,68,0,0" Grid.Row="1" VerticalAlignment="Top" Height="48" Width="129" BorderThickness="1,1,1,1" FontWeight="Bold" FontSize="20"  Click="Before_Click"/>
         <Image HorizontalAlignment="Left" Height="102" Margin="0,23,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="173" Source="/logo_kata.png" Grid.Column="1"/>
+        <TextBlock x:Name="SuccessMessage" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="Green" Text=" Position Successful! " Visibility="Collapsed" Margin="201,241,0,0" Background="#3300FF00"/>
+        <TextBlock HorizontalAlignment="Left" Margin="23,746,0,0" Grid.Row="1" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Text="If you have any problems recognising the skeleton, please remove any loose clothing." VerticalAlignment="Top" Width="1164" Grid.ColumnSpan="2"/>
 
 
     </Grid>
 </Window>
+    
 
     

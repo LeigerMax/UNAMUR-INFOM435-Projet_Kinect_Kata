@@ -314,6 +314,10 @@ namespace kinectKata
         /// </summary>
         private void DrawBody(IReadOnlyDictionary<JointType, Joint> joints, IDictionary<JointType, Point> jointPoints, DrawingContext drawingContext, Pen drawingPen)
         {
+            // Background in black
+            drawingContext.DrawRectangle(Brushes.Black, null, new Rect(0, 0, ActualWidth, ActualHeight));
+
+
             // Draw the bones
             foreach (var bone in this.bones)
             {
@@ -338,7 +342,11 @@ namespace kinectKata
 
                 if (drawBrush != null)
                 {
-                    drawingContext.DrawEllipse(drawBrush, null, jointPoints[jointType], JointThickness, JointThickness);
+                    // Disable drawing color for hands (JointType.HandLeft and JointType.HandRight)
+                    if (jointType != JointType.HandLeft && jointType != JointType.HandRight)
+                    {
+                        drawingContext.DrawEllipse(drawBrush, null, jointPoints[jointType], JointThickness, JointThickness);
+                    }
                 }
             }
         }
@@ -380,7 +388,9 @@ namespace kinectKata
                 drawPen = drawingPen;
             }
 
-            drawingContext.DrawLine(drawPen, jointPoints[jointType0], jointPoints[jointType1]);
+            Pen customizedBonePen = new Pen(Brushes.Red, 3.0f);
+            drawingContext.DrawLine(customizedBonePen, jointPoints[jointType0], jointPoints[jointType1]);
+            //drawingContext.DrawLine(drawPen, jointPoints[jointType0], jointPoints[jointType1]);
 
         }
 
@@ -690,10 +700,22 @@ namespace kinectKata
                 current_position++;
                 NextPosition();
             }
+            if(current_position == 31)
+            {
+                AfficherNouvelleFenetre();
+            }
             else
             {
                 NextPosition();
             }
+        }
+
+        private void AfficherNouvelleFenetre()
+        {
+            MessageWindow nouvelleFenetre = new MessageWindow();
+            nouvelleFenetre.ShowDialog();
+            current_position = 1;
+            NextPosition();
         }
 
         private void Before_Click(object sender, RoutedEventArgs e)
