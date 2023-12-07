@@ -338,7 +338,11 @@ namespace kinectKata
 
                 if (drawBrush != null)
                 {
-                    drawingContext.DrawEllipse(drawBrush, null, jointPoints[jointType], JointThickness, JointThickness);
+                    // Disable drawing color for hands (JointType.HandLeft and JointType.HandRight)
+                    if (jointType != JointType.HandLeft && jointType != JointType.HandRight)
+                    {
+                        drawingContext.DrawEllipse(drawBrush, null, jointPoints[jointType], JointThickness, JointThickness);
+                    }
                 }
             }
         }
