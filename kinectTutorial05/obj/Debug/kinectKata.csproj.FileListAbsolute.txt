@@ -51,3 +51,5 @@ C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectTutorial
 C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.GenerateResource.cache
 C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.CoreCompileInputs.cache
 C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.CopyComplete
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\MainMessage.baml
+C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\MainMessage.g.cs

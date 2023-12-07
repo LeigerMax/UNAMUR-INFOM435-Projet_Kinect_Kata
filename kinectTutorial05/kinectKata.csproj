@@ -127,7 +127,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
+<ItemGroup>
     <Resource Include="logo.png" />
   </ItemGroup>
   <ItemGroup>
