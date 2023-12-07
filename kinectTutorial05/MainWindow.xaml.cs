@@ -314,6 +314,10 @@ namespace kinectKata
         /// </summary>
         private void DrawBody(IReadOnlyDictionary<JointType, Joint> joints, IDictionary<JointType, Point> jointPoints, DrawingContext drawingContext, Pen drawingPen)
         {
+            // Background in black
+            drawingContext.DrawRectangle(Brushes.Black, null, new Rect(0, 0, ActualWidth, ActualHeight));
+
+
             // Draw the bones
             foreach (var bone in this.bones)
             {
@@ -384,7 +388,9 @@ namespace kinectKata
                 drawPen = drawingPen;
             }
 
-            drawingContext.DrawLine(drawPen, jointPoints[jointType0], jointPoints[jointType1]);
+            Pen customizedBonePen = new Pen(Brushes.Red, 3.0f);
+            drawingContext.DrawLine(customizedBonePen, jointPoints[jointType0], jointPoints[jointType1]);
+            //drawingContext.DrawLine(drawPen, jointPoints[jointType0], jointPoints[jointType1]);
 
         }
 
