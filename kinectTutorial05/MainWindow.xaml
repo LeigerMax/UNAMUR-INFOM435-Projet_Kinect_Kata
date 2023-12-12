@@ -46,7 +46,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="23,746,0,0" Grid.Row="1" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Text="If you have any problems recognising the skeleton, please remove any loose clothing." VerticalAlignment="Top" Width="1164" Grid.ColumnSpan="2"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="269,453,0,0" Grid.Row="1" TextWrapping="Wrap" FontSize="20" FontWeight="Bold" Text="The kinect is disconnected ! " Foreground="Red" VerticalAlignment="Top" Width="296" Grid.Column="1"/>
-        <Viewbox Grid.Row="1" Margin="46,0,414,37" Height="495" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+        <Viewbox Grid.Row="1" Margin="46,0,414,109" Height="423" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
             <Image x:Name="FrameDisplayImage" Stretch="UniformToFill"/>
         </Viewbox>
         <TextBlock x:Name="SuccessMessage" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="40" FontWeight="Bold" Foreground="Green" Text=" Position Successful! " Visibility="Collapsed" Margin="201,241,0,0" Background="#3300FF00"/>
