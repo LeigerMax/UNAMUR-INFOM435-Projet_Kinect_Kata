@@ -703,12 +703,12 @@ namespace kinectKata
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
-            if (current_position < 31)
+            if (current_position < current_kata.Count)
             {
                 current_position++;
                 NextPosition();
             }
-            if(current_position == 31)
+            if(current_position == current_kata.Count)
             {
                 AfficherNouvelleFenetre();
             }

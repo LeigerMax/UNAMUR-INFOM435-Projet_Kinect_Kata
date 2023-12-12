@@ -53,3 +53,5 @@ C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csp
 C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\kinectKata.csproj.CopyComplete
 C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\MainMessage.baml
 C:\Users\Diane Detry\source\repos\AHCI\kinectTutorial05\obj\Debug\MainMessage.g.cs
+E:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\MainMessage.baml
+E:\Projets\UNAMUR-INFOM435-Projet_Kinect_Kata\kinectTutorial05\obj\Debug\MainMessage.g.cs
